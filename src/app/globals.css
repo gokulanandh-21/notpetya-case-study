@@ -1,0 +1,2537 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ============================================================
+   JAGO — Design System
+   Color System: Near-black bg, white/gray text, electric blue accent
+   ============================================================ */
+
+:root {
+  /* Backgrounds */
+  --jago-bg-0: #020204;
+  --jago-bg-1: #06060c;
+  --jago-bg-2: #0c0c18;
+  --jago-bg-card: rgba(8, 8, 16, 0.85);
+
+  /* JAGO Accent — Electric Blue */
+  --jago-accent: #4f8ef7;
+  --jago-accent-dim: rgba(79, 142, 247, 0.15);
+  --jago-accent-glow: rgba(79, 142, 247, 0.4);
+  --jago-accent-border: rgba(79, 142, 247, 0.25);
+
+  /* Secondary Accent — Subtle Violet */
+  --jago-violet: #7c6bff;
+  --jago-violet-dim: rgba(124, 107, 255, 0.12);
+
+  /* Text */
+  --jago-text-primary: #f0f0f5;
+  --jago-text-secondary: #8a8a9a;
+  --jago-text-muted: #4a4a5a;
+
+  /* Glass */
+  --jago-glass: rgba(12, 12, 24, 0.7);
+  --jago-glass-border: rgba(255, 255, 255, 0.06);
+  --jago-glass-border-hover: rgba(79, 142, 247, 0.3);
+
+  /* Sizing */
+  --jago-radius: 16px;
+  --jago-radius-lg: 24px;
+  --jago-radius-sm: 8px;
+
+  /* Typography scale */
+  --jago-hero-size: clamp(4rem, 12vw, 11rem);
+  --jago-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --jago-h2: clamp(1.75rem, 3.5vw, 3rem);
+  --jago-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --jago-body: clamp(0.95rem, 1.5vw, 1.1rem);
+
+  /* Existing vars for backward compat */
+  --bg-primary: var(--jago-bg-0);
+  --bg-secondary: var(--jago-bg-1);
+  --accent-primary: var(--jago-accent);
+  --accent-primary-glow: var(--jago-accent-glow);
+  --accent-gradient: linear-gradient(135deg, #4f8ef7, #7c6bff);
+  --glass-bg: var(--jago-glass);
+  --glass-border: var(--jago-glass-border);
+  --text-primary: var(--jago-text-primary);
+  --text-secondary: var(--jago-text-secondary);
+  --danger: #f87171;
+  --danger-glow: rgba(248, 113, 113, 0.7);
+  --success: #34d399;
+  --success-glow: rgba(52, 211, 153, 0.7);
+  --warning: #fbbf24;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', 'Space Grotesk', sans-serif;
+  background-color: var(--jago-bg-0);
+  color: var(--jago-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   JAGO TYPOGRAPHY
+   ============================================================ */
+.jago-hero-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--jago-hero-size);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--jago-text-primary);
+}
+
+.jago-h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--jago-h1);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.jago-h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--jago-h2);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.jago-h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--jago-h3);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.jago-body {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--jago-body);
+  line-height: 1.75;
+  color: var(--jago-text-secondary);
+}
+
+.jago-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--jago-accent);
+}
+
+.jago-accent-text {
+  background: linear-gradient(135deg, var(--jago-accent) 0%, var(--jago-violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   JAGO GLASS CARDS
+   ============================================================ */
+.jago-card {
+  background: var(--jago-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--jago-glass-border);
+  border-radius: var(--jago-radius);
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.jago-card:hover {
+  border-color: var(--jago-glass-border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--jago-accent-dim);
+}
+
+.jago-card-glow {
+  box-shadow: 0 0 0 1px var(--jago-accent-border), 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* ============================================================
+   JAGO BUTTONS
+   ============================================================ */
+.jago-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: none;
+  outline: none;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.jago-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.jago-btn:hover::before {
+  opacity: 1;
+}
+
+.jago-btn-primary {
+  background: linear-gradient(135deg, var(--jago-accent), var(--jago-violet));
+  color: white;
+  box-shadow: 0 8px 32px var(--jago-accent-glow);
+}
+
+.jago-btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 48px var(--jago-accent-glow);
+}
+
+.jago-btn-ghost {
+  background: transparent;
+  color: var(--jago-text-primary);
+  border: 1px solid var(--jago-glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.jago-btn-ghost:hover {
+  border-color: var(--jago-glass-border-hover);
+  background: var(--jago-accent-dim);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   JAGO SECTION LAYOUT
+   ============================================================ */
+.jago-section {
+  position: relative;
+  width: 100%;
+  padding: clamp(5rem, 10vh, 9rem) 0;
+  overflow: hidden;
+}
+
+.jago-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+.jago-container-narrow {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+/* ============================================================
+   SECTION DIVIDERS & BACKGROUNDS
+   ============================================================ */
+.jago-bg-gradient-section {
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(79, 142, 247, 0.06) 0%, transparent 70%);
+}
+
+.jago-bg-grid {
+  background-image: 
+    linear-gradient(rgba(79, 142, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 142, 247, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.jago-noise {
+  position: relative;
+}
+.jago-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   SCROLL REVEAL (base state for GSAP)
+   ============================================================ */
+.jago-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.jago-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.jago-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.jago-reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+/* ============================================================
+   NAVIGATION (floating)
+   ============================================================ */
+.jago-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.25rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+}
+
+.jago-nav.scrolled {
+  background: rgba(2, 2, 4, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--jago-glass-border);
+}
+
+.jago-nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--jago-text-primary);
+  text-decoration: none;
+}
+
+.jago-nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.jago-nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--jago-text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.jago-nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--jago-accent);
+  transition: width 0.3s ease;
+}
+
+.jago-nav-links a:hover {
+  color: var(--jago-text-primary);
+}
+
+.jago-nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+.jago-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--jago-accent), var(--jago-violet));
+  z-index: 1001;
+  transform-origin: left;
+  box-shadow: 0 0 10px var(--jago-accent-glow);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.jago-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--jago-bg-0);
+}
+
+.jago-hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.jago-hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+.jago-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  border: 1px solid var(--jago-accent-border);
+  background: var(--jago-accent-dim);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jago-accent);
+  margin-bottom: 2.5rem;
+}
+
+.jago-hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--jago-accent);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.jago-hero-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  color: var(--jago-text-secondary);
+  margin: 1.5rem 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+.jago-hero-desc {
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  color: var(--jago-text-muted);
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+.jago-hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.jago-scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--jago-text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+.jago-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--jago-accent), transparent);
+  animation: scroll-line 2s ease-in-out infinite;
+}
+
+@keyframes scroll-line {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.5); transform-origin: top; }
+}
+
+/* ============================================================
+   PROBLEM SECTION
+   ============================================================ */
+.jago-gap-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.jago-gap-stage {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 2.5rem;
+  border-radius: var(--jago-radius);
+  border: 1px solid var(--jago-glass-border);
+  background: var(--jago-glass);
+  backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 1;
+  min-width: 240px;
+  justify-content: center;
+}
+
+.jago-gap-connector {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--jago-accent-border), var(--jago-text-muted));
+  margin: 4px auto;
+  position: relative;
+}
+
+.jago-gap-connector::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid var(--jago-text-muted);
+  border-bottom: 1px solid var(--jago-text-muted);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.jago-gap-void {
+  border: 1px dashed rgba(79, 142, 247, 0.3);
+  background: rgba(79, 142, 247, 0.03);
+}
+
+.jago-problem-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 4rem;
+}
+
+.jago-problem-card {
+  padding: 2rem;
+}
+
+.jago-problem-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--jago-accent-dim);
+  border: 1px solid var(--jago-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: var(--jago-accent);
+}
+
+/* ============================================================
+   ECOSYSTEM DIAGRAM
+   ============================================================ */
+.jago-ecosystem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+}
+
+.jago-ecosystem-center {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem 3rem;
+  border-radius: var(--jago-radius-lg);
+  background: linear-gradient(135deg, rgba(79, 142, 247, 0.2), rgba(124, 107, 255, 0.2));
+  border: 1px solid var(--jago-accent-border);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 60px var(--jago-accent-dim), 0 0 120px rgba(79, 142, 247, 0.05);
+}
+
+.jago-orbit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: var(--jago-radius);
+  background: var(--jago-glass);
+  border: 1px solid var(--jago-glass-border);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+  cursor: default;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--jago-text-secondary);
+}
+
+.jago-orbit-item:hover {
+  border-color: var(--jago-accent-border);
+  color: var(--jago-text-primary);
+  background: var(--jago-accent-dim);
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   WORKSHOP MODULES
+   ============================================================ */
+.jago-module-card {
+  padding: 1.75rem;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.jago-module-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--jago-accent-dim), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.jago-module-card:hover::before {
+  opacity: 1;
+}
+
+.jago-module-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--jago-accent);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.04em;
+}
+
+/* ============================================================
+   IMPACT DASHBOARD
+   ============================================================ */
+.jago-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.jago-metric-card {
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.jago-metric-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--jago-accent), var(--jago-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.jago-metric-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--jago-text-secondary);
+  margin-top: 0.75rem;
+}
+
+.jago-metric-note {
+  font-size: 0.7rem;
+  color: var(--jago-text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.jago-timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+  padding: 3rem 0 2rem;
+  scrollbar-width: none;
+}
+
+.jago-timeline::-webkit-scrollbar { display: none; }
+
+.jago-timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 160px;
+  position: relative;
+  flex: 1;
+}
+
+.jago-timeline-step::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: calc(50% + 20px);
+  right: calc(-50% + 20px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--jago-accent-border), transparent);
+}
+
+.jago-timeline-step:last-child::after {
+  display: none;
+}
+
+.jago-timeline-node {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--jago-accent-dim);
+  border: 2px solid var(--jago-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.jago-timeline-node.active {
+  background: linear-gradient(135deg, var(--jago-accent), var(--jago-violet));
+  border-color: transparent;
+  box-shadow: 0 0 20px var(--jago-accent-glow);
+}
+
+/* ============================================================
+   TECH SERVICES GRID
+   ============================================================ */
+.jago-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.jago-tech-card {
+  padding: 2rem;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.jago-tech-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.jago-tech-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--jago-accent-dim);
+  border: 1px solid var(--jago-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--jago-accent);
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.jago-tech-card:hover .jago-tech-icon {
+  background: linear-gradient(135deg, var(--jago-accent), var(--jago-violet));
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 8px 24px var(--jago-accent-glow);
+}
+
+/* ============================================================
+   DOMAIN CARDS
+   ============================================================ */
+.jago-domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.jago-domain-card {
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.jago-domain-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--card-color, var(--jago-accent));
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.jago-domain-card:hover::before {
+  opacity: 1;
+}
+
+.jago-domain-card-glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--card-color, var(--jago-accent));
+  opacity: 0.05;
+  filter: blur(40px);
+  transition: opacity 0.3s ease;
+}
+
+.jago-domain-card:hover .jago-domain-card-glow {
+  opacity: 0.12;
+}
+
+/* ============================================================
+   TEAM CARDS
+   ============================================================ */
+.jago-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.jago-team-card {
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.jago-team-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--jago-accent-dim), var(--jago-violet-dim));
+  border: 2px solid var(--jago-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--jago-accent);
+  overflow: hidden;
+}
+
+.jago-team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jago-team-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.jago-trait-pill {
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  background: var(--jago-accent-dim);
+  border: 1px solid var(--jago-accent-border);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--jago-accent);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   PRINCIPAL VALUE
+   ============================================================ */
+.jago-value-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.jago-value-card {
+  padding: 2.5rem;
+}
+
+.jago-value-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.jago-value-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--jago-text-secondary);
+  line-height: 1.6;
+}
+
+.jago-value-list li::before {
+  content: '';
+  min-width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--jago-accent);
+  margin-top: 0.55rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   PARTNERSHIP STEPS
+   ============================================================ */
+.jago-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  position: relative;
+}
+
+.jago-step-card {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.jago-step-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--jago-accent);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+/* ============================================================
+   VISION SECTION
+   ============================================================ */
+.jago-vision {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--jago-bg-0);
+}
+
+.jago-vision-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 60% 60% at 50% 50%, rgba(79, 142, 247, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 30% 70%, rgba(124, 107, 255, 0.05) 0%, transparent 60%);
+}
+
+.jago-vision-text-sequence p {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: var(--jago-text-secondary);
+  line-height: 1.6;
+  opacity: 0;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.jago-contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.jago-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.75rem;
+  border-radius: var(--jago-radius);
+  background: var(--jago-glass);
+  border: 1px solid var(--jago-glass-border);
+  text-decoration: none;
+  color: var(--jago-text-secondary);
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.jago-contact-link:hover {
+  border-color: var(--jago-accent-border);
+  color: var(--jago-text-primary);
+  background: var(--jago-accent-dim);
+  transform: translateX(4px);
+}
+
+.jago-contact-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--jago-accent-dim);
+  border: 1px solid var(--jago-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--jago-accent);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.jago-footer {
+  border-top: 1px solid var(--jago-glass-border);
+  padding: 3rem 0 2rem;
+}
+
+/* ============================================================
+   MOBILE NAVIGATION MENU
+   ============================================================ */
+.jago-mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(2, 2, 4, 0.97);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.jago-mobile-menu.open {
+  transform: translateX(0);
+}
+
+.jago-mobile-menu a {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--jago-text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  transition: color 0.2s ease;
+}
+
+.jago-mobile-menu a:hover {
+  color: var(--jago-accent);
+}
+
+.jago-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.jago-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--jago-text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ============================================================
+   GLASS PANEL (existing compat)
+   ============================================================ */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* ============================================================
+   UTILITIES — existing compat
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  outline: none;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: var(--accent-gradient);
+  background-size: 200% 200%;
+  color: white;
+  box-shadow: 0 8px 25px var(--accent-primary-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px var(--accent-primary-glow);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  backdrop-filter: blur(10px);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  box-shadow: 0 8px 25px var(--danger-glow);
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+  box-shadow: 0 12px 35px var(--danger-glow);
+  transform: translateY(-2px);
+}
+
+.input-group { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+.input-label { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+.input-field { width: 100%; padding: 1rem 1.25rem; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 12px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; transition: all 0.3s ease; }
+.input-field:focus { outline: none; background: rgba(0,0,0,0.5); border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.25); }
+.gradient-text { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.text-center { text-align: center; }
+.text-secondary { color: var(--text-secondary); }
+.container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+.min-h-screen { min-height: 100vh; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 0.5rem; } .gap-3 { gap: 0.75rem; } .gap-4 { gap: 1rem; } .gap-6 { gap: 1.5rem; } .gap-8 { gap: 2rem; }
+.mt-2 { margin-top: 0.5rem; } .mt-4 { margin-top: 1rem; } .mt-8 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 0.5rem; } .mb-4 { margin-bottom: 1rem; } .mb-8 { margin-bottom: 2rem; }
+.w-full { width: 100%; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(79, 142, 247, 0.3); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .jago-nav-links { display: none; }
+  .jago-hamburger { display: flex; }
+  .jago-impact-grid { grid-template-columns: repeat(2, 1fr); }
+  .jago-timeline { flex-direction: column; align-items: flex-start; gap: 1rem; overflow-x: unset; }
+  .jago-timeline-step { flex-direction: row; align-items: flex-start; min-width: unset; width: 100%; }
+  .jago-timeline-step::after { display: none; }
+  .jago-hero-ctas { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 480px) {
+  .jago-impact-grid { grid-template-columns: 1fr; }
+  .jago-team-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .jago-reveal, .jago-reveal-left, .jago-reveal-right, .jago-reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   JAGO SPEECH STUDIO — Premium Enterprise Cyber-SaaS UI
+   ============================================================ */
+
+/* Ambient mesh background utility */
+.jago-bg-gradient {
+  background-color: #030712;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(6, 182, 212, 0.08) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Card */
+.jago-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.jago-card:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Glowing Border Card variant */
+.jago-card-glow {
+  position: relative;
+  background: rgba(15, 23, 42, 0.75);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(20px);
+}
+.jago-card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1.25rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.4));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Buttons */
+.jago-btn-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(165, 180, 252, 0.3);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+}
+.jago-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  box-shadow: 0 6px 25px rgba(99, 102, 241, 0.55);
+  transform: translateY(-2px);
+}
+.jago-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.jago-btn-secondary {
+  background: rgba(30, 41, 59, 0.7);
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.jago-btn-secondary:hover:not(:disabled) {
+  background: rgba(51, 65, 85, 0.8);
+  color: #f8fafc;
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-1px);
+}
+.jago-btn-secondary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.jago-btn-danger {
+  background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+  color: #fef2f2;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+.jago-btn-danger:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #ef4444 100%);
+  box-shadow: 0 6px 25px rgba(239, 68, 68, 0.5);
+  transform: translateY(-2px);
+}
+
+.jago-btn-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.875rem;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.jago-btn-icon:hover {
+  background: rgba(51, 65, 85, 0.9);
+  color: #f8fafc;
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: scale(1.05);
+}
+
+.jago-btn-icon-sm {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.jago-btn-icon-sm:hover {
+  background: rgba(51, 65, 85, 0.9);
+  color: #f8fafc;
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.6);
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% { 
+    opacity: 1; 
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4), inset 0 0 15px rgba(99, 102, 241, 0.2); 
+  }
+  50% { 
+    opacity: 0.85; 
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.6), inset 0 0 20px rgba(139, 92, 246, 0.3); 
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 2.5s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+.animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #f8fafc 0%, #818cf8 50%, #f8fafc 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Score ring reveal animation */
+@keyframes score-reveal {
+  from { stroke-dashoffset: 176; }
+}
+.score-ring-animated {
+  animation: score-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ============================================================
+   JAGO HACKATHON LANDING
+   School-first information architecture in the existing JAGO visual system.
+   ============================================================ */
+
+html {
+  scroll-padding-top: 5.5rem;
+}
+
+.jago-hackathon-site {
+  --hackathon-panel: rgba(10, 13, 26, 0.78);
+  --hackathon-panel-solid: #0b0e1d;
+  --hackathon-line: rgba(255, 255, 255, 0.1);
+  --hackathon-muted: #99a1b8;
+  --hackathon-blue: #4f8ef7;
+  --hackathon-violet: #7c6bff;
+  --hackathon-cyan: #57d9ff;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: clip;
+  background: #020204;
+  color: var(--jago-text-primary);
+}
+
+.jago-hackathon-site a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.jago-hackathon-site button,
+.jago-hackathon-site input {
+  font: inherit;
+}
+
+.jago-hackathon-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 2px;
+  z-index: 1100;
+  background: linear-gradient(90deg, var(--hackathon-blue), var(--hackathon-violet), var(--hackathon-cyan));
+  box-shadow: 0 0 16px rgba(79, 142, 247, 0.7);
+}
+
+.jago-hackathon-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-height: 5.25rem;
+  padding: 0.8rem clamp(1.25rem, 4vw, 4.5rem);
+  border-bottom: 1px solid transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.jago-hackathon-nav.is-scrolled {
+  background: rgba(3, 4, 10, 0.78);
+  border-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.jago-hackathon-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex: 0 0 auto;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.jago-hackathon-brand > span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.jago-hackathon-brand small {
+  color: rgba(240, 240, 245, 0.46);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.46rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+
+.jago-coin {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(135, 184, 255, 0.42);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 24%, rgba(255, 255, 255, 0.45), transparent 10%),
+    radial-gradient(circle at 42% 38%, rgba(86, 157, 255, 0.34), transparent 35%),
+    linear-gradient(145deg, #1e253a 8%, #06070d 56%, #162b57 100%);
+  box-shadow:
+    inset 6px 6px 15px rgba(255, 255, 255, 0.12),
+    inset -8px -8px 18px rgba(0, 0, 0, 0.72),
+    0 0 0 1px rgba(124, 107, 255, 0.18),
+    0 0 36px rgba(79, 142, 247, 0.24);
+  transform: translateZ(0);
+}
+
+.jago-coin-small {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.jago-coin-large {
+  width: clamp(12rem, 22vw, 19rem);
+  height: clamp(12rem, 22vw, 19rem);
+  border-width: 2px;
+  animation: jago-coin-float 6s ease-in-out infinite;
+}
+
+.jago-coin-rim {
+  position: absolute;
+  inset: 7%;
+  border: 1px solid rgba(137, 196, 255, 0.28);
+  border-radius: 50%;
+  box-shadow: inset 0 0 12px rgba(79, 142, 247, 0.23);
+}
+
+.jago-coin-letter {
+  position: absolute;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  color: #d5e5ff;
+  text-shadow: 1px 1px 0 #10182a, -1px -1px 0 rgba(255, 255, 255, 0.4), 0 0 12px rgba(99, 167, 255, 0.75);
+}
+
+.jago-coin-large .jago-coin-letter {
+  font-size: clamp(5.4rem, 10vw, 8.6rem);
+  text-shadow: 3px 3px 0 #10182a, -2px -2px 0 rgba(255, 255, 255, 0.35), 0 0 28px rgba(99, 167, 255, 0.78);
+}
+
+.jago-coin-j {
+  transform: translate(-22%, 5%);
+  z-index: 2;
+}
+
+.jago-coin-g {
+  transform: translate(25%, -3%);
+  color: #8bb9ff;
+  z-index: 1;
+}
+
+.jago-coin-glint {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 30%;
+  height: 12%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  filter: blur(7px);
+  transform: rotate(-28deg);
+}
+
+@keyframes jago-coin-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.jago-hackathon-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 2.2vw, 2rem);
+  margin-left: auto;
+}
+
+.jago-hackathon-links a,
+.jago-hackathon-nav-cta {
+  color: rgba(240, 240, 245, 0.68);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.jago-hackathon-links a:hover,
+.jago-hackathon-nav-cta:hover {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.jago-hackathon-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1rem;
+  border: 1px solid rgba(105, 158, 255, 0.38);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(79, 142, 247, 0.2), rgba(124, 107, 255, 0.18));
+  color: #eaf2ff;
+  white-space: nowrap;
+}
+
+.jago-hackathon-menu {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: white;
+  cursor: pointer;
+}
+
+.jago-hackathon-mobile-menu {
+  position: fixed;
+  inset: 5.25rem 0 auto;
+  z-index: 990;
+  display: none;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(3, 4, 10, 0.96);
+  backdrop-filter: blur(22px);
+}
+
+.jago-hackathon-mobile-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 0.9rem;
+  border-radius: 0.8rem;
+  color: rgba(240, 240, 245, 0.76);
+  font-weight: 600;
+}
+
+.jago-hackathon-mobile-menu a:hover,
+.jago-hackathon-mobile-menu .mobile-menu-cta {
+  background: rgba(79, 142, 247, 0.12);
+  color: white;
+}
+
+.jago-hackathon-hero {
+  position: relative;
+  min-height: min(920px, 100vh);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 9rem clamp(1.25rem, 5vw, 5rem) 5rem;
+  background:
+    radial-gradient(circle at 65% 45%, rgba(79, 142, 247, 0.13), transparent 29%),
+    radial-gradient(circle at 86% 16%, rgba(124, 107, 255, 0.12), transparent 20%),
+    #020204;
+}
+
+.jago-hackathon-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.34;
+  background-image: linear-gradient(rgba(79, 142, 247, 0.038) 1px, transparent 1px), linear-gradient(90deg, rgba(79, 142, 247, 0.038) 1px, transparent 1px);
+  background-size: 74px 74px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.jago-hackathon-hero-grid,
+.jago-hackathon-container {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.jago-hackathon-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.jago-hackathon-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(79, 142, 247, 0.35);
+  border-radius: 999px;
+  background: rgba(79, 142, 247, 0.08);
+  color: #8fbbff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.eyebrow-dot,
+.contact-note-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--hackathon-cyan);
+  box-shadow: 0 0 14px rgba(87, 217, 255, 0.9);
+}
+
+.jago-hackathon-hero h1 {
+  max-width: 720px;
+  margin: 1.55rem 0 1.4rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3.4rem, 7vw, 7.3rem);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 0.91;
+  text-wrap: balance;
+}
+
+.jago-hackathon-hero h1 span {
+  display: block;
+  color: #83b4ff;
+  text-shadow: 0 0 32px rgba(79, 142, 247, 0.35);
+}
+
+.hero-lede {
+  max-width: 570px;
+  margin: 0;
+  color: rgba(222, 227, 241, 0.68);
+  font-size: clamp(1rem, 1.5vw, 1.16rem);
+  line-height: 1.75;
+}
+
+.jago-hackathon-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2.2rem;
+}
+
+.jago-hackathon-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 2.3rem;
+  color: rgba(240, 240, 245, 0.5);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.jago-hackathon-hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.jago-hackathon-hero-meta svg {
+  color: var(--hackathon-blue);
+}
+
+.jago-hackathon-hero-visual {
+  position: relative;
+  min-height: 31rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-orbit {
+  position: absolute;
+  width: clamp(17rem, 34vw, 29rem);
+  height: clamp(9rem, 18vw, 15rem);
+  border: 1px solid rgba(79, 142, 247, 0.22);
+  border-radius: 50%;
+  transform: rotate(-22deg);
+  box-shadow: 0 0 28px rgba(79, 142, 247, 0.08);
+}
+
+.hero-orbit-two {
+  width: clamp(13rem, 28vw, 23rem);
+  height: clamp(19rem, 35vw, 30rem);
+  border-color: rgba(124, 107, 255, 0.19);
+  transform: rotate(37deg);
+}
+
+.hero-coin-wrap {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+}
+
+.hero-coin-glow {
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background: rgba(79, 142, 247, 0.26);
+  filter: blur(55px);
+}
+
+.hero-program-card {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+  width: min(14rem, 46%);
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.95rem;
+  background: rgba(8, 10, 20, 0.77);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.hero-program-card-top { top: 1.2rem; left: 0; }
+.hero-program-card-bottom { right: 0; bottom: 1.7rem; }
+
+.hero-program-card strong {
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.hero-program-card i {
+  color: var(--hackathon-cyan);
+  font-style: normal;
+}
+
+.mini-label,
+.card-status {
+  color: rgba(240, 240, 245, 0.45);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.card-status span {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: #6be9a9;
+  box-shadow: 0 0 10px rgba(107, 233, 169, 0.8);
+}
+
+.hero-image-frame {
+  position: absolute;
+  right: -1rem;
+  bottom: -1rem;
+  width: 10rem;
+  height: 7rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.85rem;
+  opacity: 0.56;
+  transform: rotate(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+}
+
+.hero-image-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(4, 8, 20, 0.2), rgba(79, 142, 247, 0.38));
+}
+
+.hero-image-frame img {
+  object-fit: cover;
+}
+
+.jago-hackathon-scroll-note {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transform: translateX(-50%);
+  color: rgba(240, 240, 245, 0.42);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.jago-hackathon-scroll-note span {
+  width: 2.2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hackathon-blue));
+}
+
+.jago-hackathon-section {
+  position: relative;
+  padding: clamp(5.5rem, 10vw, 9rem) clamp(1.25rem, 5vw, 5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.jago-hackathon-flow-section {
+  background: radial-gradient(circle at 50% 0%, rgba(79, 142, 247, 0.1), transparent 32%), #05060c;
+}
+
+.jago-hackathon-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5rem;
+  margin-bottom: 3.2rem;
+}
+
+.jago-hackathon-section-heading h2,
+.school-section-copy h2,
+.showcase-copy h2,
+.jago-hackathon-faq-section h2,
+.partner-copy h2 {
+  max-width: 700px;
+  margin: 1rem 0 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.9rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.jago-hackathon-section-heading > p {
+  max-width: 350px;
+  margin: 0 0 0.2rem;
+  color: var(--hackathon-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.jago-hackathon-days {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.jago-hackathon-day-card {
+  position: relative;
+  min-height: 22rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.45rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.2rem;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.018) 44%, rgba(4, 5, 12, 0.86));
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.jago-hackathon-day-card::before {
+  content: '';
+  position: absolute;
+  top: -4rem;
+  right: -3rem;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 50%;
+  background: rgba(79, 142, 247, 0.12);
+  filter: blur(24px);
+}
+
+.jago-hackathon-day-card:hover {
+  border-color: rgba(119, 173, 255, 0.45);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28), 0 0 26px rgba(79, 142, 247, 0.12);
+  transform: translateY(-5px);
+}
+
+.jago-hackathon-day-card.accent-violet::before { background: rgba(124, 107, 255, 0.16); }
+.jago-hackathon-day-card.accent-cyan::before { background: rgba(87, 217, 255, 0.13); }
+
+.day-card-topline {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #83b4ff;
+}
+
+.accent-violet .day-card-topline { color: #b4aaff; }
+.accent-cyan .day-card-topline { color: var(--hackathon-cyan); }
+
+.day-number,
+.day-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.day-label {
+  position: relative;
+  z-index: 1;
+  margin-top: 3.5rem;
+  color: rgba(240, 240, 245, 0.48);
+  letter-spacing: 0.08em;
+}
+
+.jago-hackathon-day-card h3 {
+  position: relative;
+  z-index: 1;
+  max-width: 270px;
+  margin: 0.55rem 0 0.8rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.jago-hackathon-day-card p {
+  position: relative;
+  z-index: 1;
+  max-width: 320px;
+  margin: 0;
+  color: var(--hackathon-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.day-card-line {
+  width: 100%;
+  height: 1px;
+  margin-top: auto;
+  background: linear-gradient(90deg, rgba(79, 142, 247, 0.55), transparent);
+}
+
+.day-card-arrow {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  color: rgba(240, 240, 245, 0.72);
+}
+
+.jago-hackathon-teacher-band {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  padding: 1.2rem 1.35rem;
+  border: 1px solid rgba(87, 217, 255, 0.2);
+  border-radius: 1rem;
+  background: linear-gradient(90deg, rgba(87, 217, 255, 0.08), rgba(79, 142, 247, 0.04));
+}
+
+.teacher-band-icon {
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid rgba(87, 217, 255, 0.3);
+  border-radius: 0.8rem;
+  color: var(--hackathon-cyan);
+}
+
+.jago-hackathon-teacher-band h3 {
+  margin: 0.22rem 0 0.2rem;
+  font-size: 1rem;
+}
+
+.jago-hackathon-teacher-band p {
+  margin: 0;
+  color: var(--hackathon-muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.teacher-band-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(240, 240, 245, 0.55);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.jago-hackathon-school-section {
+  background: #020204;
+}
+
+.school-section-grid,
+.showcase-grid,
+.partner-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.school-section-copy p,
+.showcase-copy > p,
+.partner-copy > p,
+.jago-hackathon-faq-section > p {
+  max-width: 520px;
+  margin: 1.7rem 0 0;
+  color: var(--hackathon-muted);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.jago-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  color: #8fbbff;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.jago-text-link:hover { color: white; }
+
+.school-value-grid {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--hackathon-line);
+}
+
+.school-value-item {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--hackathon-line);
+}
+
+.school-value-index {
+  color: var(--hackathon-blue);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.school-value-item h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.school-value-item p {
+  margin: 0.35rem 0 0;
+  color: var(--hackathon-muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.jago-hackathon-showcase-section {
+  background: radial-gradient(circle at 15% 40%, rgba(124, 107, 255, 0.12), transparent 28%), #05060c;
+}
+
+.showcase-visual {
+  position: relative;
+  min-height: 25rem;
+}
+
+.showcase-image-main {
+  position: relative;
+  width: min(100%, 31rem);
+  height: 23rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.2rem;
+  transform: rotate(-3deg);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+}
+
+.showcase-image-main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, rgba(6, 8, 20, 0.2), rgba(124, 107, 255, 0.34));
+}
+
+.showcase-image-main img { object-fit: cover; }
+
+.showcase-stamp {
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(87, 217, 255, 0.33);
+  border-radius: 0.75rem;
+  background: rgba(6, 9, 18, 0.8);
+  color: var(--hackathon-cyan);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  backdrop-filter: blur(14px);
+}
+
+.showcase-copy { align-self: center; }
+
+.showcase-points {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1.7rem 0 2rem;
+}
+
+.showcase-points span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(240, 240, 245, 0.75);
+  font-size: 0.86rem;
+}
+
+.showcase-points svg { color: #73e4ae; }
+
+.jago-hackathon-outcomes-section {
+  background: #020204;
+}
+
+.compact-heading { align-items: flex-end; }
+
+.jago-hackathon-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.jago-hackathon-outcome-card {
+  padding: 1.5rem;
+  border: 1px solid var(--hackathon-line);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.jago-hackathon-outcome-card svg { color: var(--hackathon-blue); }
+
+.jago-hackathon-outcome-card h3 {
+  margin: 2.3rem 0 0.45rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.35rem;
+}
+
+.jago-hackathon-outcome-card p {
+  margin: 0;
+  color: var(--hackathon-muted);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.jago-hackathon-faq-section {
+  background: #05060c;
+}
+
+.jago-hackathon-faq-section h2 { font-size: clamp(2.2rem, 4vw, 4rem); }
+
+.jago-hackathon-faq-section > p { margin-top: 1.2rem; }
+
+.faq-list { border-top: 1px solid var(--hackathon-line); }
+
+.faq-item { border-bottom: 1px solid var(--hackathon-line); }
+
+.faq-item button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border: 0;
+  background: transparent;
+  color: rgba(240, 240, 245, 0.86);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 650;
+  text-align: left;
+}
+
+.faq-item button svg { color: var(--hackathon-blue); transition: transform 0.25s ease; }
+.faq-item.is-open button svg { transform: rotate(180deg); }
+
+.faq-item p {
+  max-width: 630px;
+  margin: -0.3rem 0 1.2rem;
+  color: var(--hackathon-muted);
+  font-size: 0.86rem;
+  line-height: 1.75;
+}
+
+.jago-hackathon-partner-section {
+  background: radial-gradient(circle at 85% 30%, rgba(79, 142, 247, 0.14), transparent 28%), #020204;
+}
+
+.partner-grid { align-items: center; }
+
+.partner-copy h2 { font-size: clamp(2.5rem, 5vw, 5.3rem); }
+
+.partner-contact-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 2rem;
+  color: rgba(240, 240, 245, 0.5);
+  font-size: 0.77rem;
+}
+
+.jago-hackathon-form {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(18px);
+}
+
+.form-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--hackathon-line);
+  color: rgba(240, 240, 245, 0.6);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.form-heading svg { color: var(--hackathon-blue); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.jago-hackathon-form label {
+  display: grid;
+  gap: 0.45rem;
+  color: rgba(240, 240, 245, 0.58);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.jago-hackathon-form input {
+  min-width: 0;
+  width: 100%;
+  padding: 0.78rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 0.65rem;
+  outline: 0;
+  background: rgba(2, 2, 4, 0.55);
+  color: white;
+  font-size: 0.8rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jago-hackathon-form input::placeholder { color: rgba(240, 240, 245, 0.26); }
+.jago-hackathon-form input:focus { border-color: rgba(79, 142, 247, 0.75); box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.12); }
+
+.form-submit { width: 100%; justify-content: center; margin-top: 1rem; }
+
+.form-footnote {
+  display: block;
+  margin-top: 0.85rem;
+  color: rgba(240, 240, 245, 0.34);
+  font-size: 0.67rem;
+  text-align: center;
+}
+
+.jago-hackathon-footer {
+  padding: 2rem clamp(1.25rem, 5vw, 5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #020204;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-grid > p {
+  margin: 0;
+  color: rgba(240, 240, 245, 0.38);
+  font-size: 0.75rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1.2rem;
+  color: rgba(240, 240, 245, 0.58);
+  font-size: 0.72rem;
+}
+
+.footer-links a { display: inline-flex; align-items: center; gap: 0.3rem; }
+.footer-links a:hover { color: white; }
+
+@media (max-width: 1020px) {
+  .jago-hackathon-links { gap: 0.9rem; }
+  .jago-hackathon-links a { font-size: 0.7rem; }
+  .jago-hackathon-nav-cta { padding-inline: 0.8rem; font-size: 0.7rem; }
+  .jago-hackathon-hero-grid { gap: 2rem; }
+  .hero-program-card { width: 10.8rem; }
+}
+
+@media (max-width: 860px) {
+  .jago-hackathon-links,
+  .jago-hackathon-nav-cta { display: none; }
+
+  .jago-hackathon-menu { display: inline-flex; margin-left: auto; }
+  .jago-hackathon-mobile-menu { display: flex; }
+
+  .jago-hackathon-hero {
+    min-height: auto;
+    padding-top: 8.5rem;
+  }
+
+  .jago-hackathon-hero-grid,
+  .school-section-grid,
+  .showcase-grid,
+  .partner-grid,
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .jago-hackathon-hero-copy { text-align: center; }
+  .jago-hackathon-eyebrow,
+  .jago-hackathon-hero-actions,
+  .jago-hackathon-hero-meta { justify-content: center; }
+  .hero-lede { margin-inline: auto; }
+  .jago-hackathon-hero-visual { min-height: 25rem; }
+  .jago-hackathon-section-heading { align-items: flex-start; flex-direction: column; gap: 0; }
+  .jago-hackathon-section-heading > p { max-width: 580px; margin-top: 1.4rem; }
+  .jago-hackathon-outcome-grid { grid-template-columns: 1fr; }
+  .showcase-visual { order: 2; }
+  .showcase-copy { order: 1; }
+  .school-section-copy, .showcase-copy, .partner-copy, .jago-hackathon-faq-section > div > div:first-child { text-align: center; }
+  .school-section-copy p, .showcase-copy > p, .partner-copy > p, .jago-hackathon-faq-section > div > div:first-child p { margin-inline: auto; }
+  .jago-text-link, .partner-contact-note { justify-content: center; }
+  .showcase-visual { display: flex; justify-content: center; }
+  .showcase-stamp { right: calc(50% - 15rem); }
+}
+
+@media (max-width: 640px) {
+  .jago-hackathon-hero { padding-inline: 1rem; padding-bottom: 4.5rem; }
+  .jago-hackathon-section { padding-inline: 1rem; }
+  .jago-hackathon-hero h1 { font-size: clamp(3rem, 15vw, 5rem); }
+  .jago-hackathon-hero-meta { gap: 0.75rem; font-size: 0.66rem; }
+  .jago-hackathon-hero-visual { min-height: 20rem; margin-top: 0.6rem; }
+  .jago-coin-large { width: 12rem; height: 12rem; }
+  .hero-coin-glow { width: 12rem; height: 12rem; }
+  .hero-program-card { width: 9.3rem; padding: 0.75rem; }
+  .hero-program-card-top { top: 0; left: 0; }
+  .hero-program-card-bottom { right: 0; bottom: 0; }
+  .hero-image-frame { width: 7.5rem; height: 5rem; right: 0.8rem; bottom: 2.8rem; }
+  .jago-hackathon-days { grid-template-columns: 1fr; }
+  .jago-hackathon-day-card { min-height: 18.5rem; }
+  .jago-hackathon-teacher-band { grid-template-columns: auto 1fr; align-items: start; }
+  .teacher-band-tag { grid-column: 2; }
+  .form-row { grid-template-columns: 1fr; }
+  .showcase-image-main { height: 17rem; }
+  .showcase-stamp { right: 0; bottom: 0; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .footer-links { justify-content: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jago-coin-large { animation: none; }
+  .jago-hackathon-day-card { transition: none; }
+}
+
