@@ -28,7 +28,7 @@ export const attackChain: AttackStage[] = [
     phase: 'INITIAL ACCESS',
     title: 'Supply-Chain Compromise via M.E.Doc',
     description:
-      'Sandworm operators compromised the update infrastructure of M.E.Doc — a Ukrainian accounting application mandated by the Ukrainian government for tax reporting. A backdoored DLL (ZvitPublishedObjects.dll) was silently delivered to ~80% of Ukrainian businesses over months before the destructive payload was triggered.',
+      'Sandworm operators compromised the update infrastructure of M.E.Doc — a Ukrainian accounting application mandated by the Ukrainian government for tax reporting. A backdoored DLL (ZvitPublishedObjects.dll) was silently delivered to the vast majority of Ukrainian corporate environments over months before the destructive payload was triggered.',
     mechanism:
       'The attackers gained access to Intellect Service\'s internal update server. They replaced the legitimate update DLL with a trojanised version that maintained full accounting functionality (to avoid detection) while adding a hidden module: it exfiltrated EDRPOU tax codes, email addresses, and cached proxy/VPN credentials via HTTP POST to attacker infrastructure, and downloaded/executed additional payloads on command. Three update-based delivery events occurred: April 14, May 15, and June 27, 2017.',
     whyUsed:

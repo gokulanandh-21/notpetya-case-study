@@ -5,8 +5,12 @@ import { useState, useEffect } from 'react';
 const navLinks = [
   { label: 'Overview', href: '#overview' },
   { label: 'Attack', href: '#attack' },
+  { label: 'Database', href: '#query-engine' },
+  { label: 'Explorer', href: '#database-explorer' },
+  { label: 'ER Model', href: '#er-diagram' },
+  { label: 'SOC Simulator', href: '#soc-simulator' },
   { label: 'Impact', href: '#impact' },
-  { label: 'Investigation', href: '#investigation' },
+  { label: 'Defense', href: '#defense-layers' },
   { label: 'Lessons', href: '#lessons' },
   { label: 'Sources', href: '#sources' },
 ];

@@ -7,6 +7,11 @@ import SupplyChainDiagram from '@/components/notpetya/SupplyChainDiagram';
 import TimelineSection from '@/components/notpetya/TimelineSection';
 import AttackChain from '@/components/notpetya/AttackChain';
 import PropagationSim from '@/components/notpetya/PropagationSim';
+import IncidentQueryEngine from '@/components/database/IncidentQueryEngine';
+import DatabaseExplorer from '@/components/database/DatabaseExplorer';
+import ERDiagramSection from '@/components/database/ERDiagramSection';
+import SOCSimulator from '@/components/soc/SOCSimulator';
+import DefenseLayers from '@/components/notpetya/DefenseLayers';
 import MitreMapping from '@/components/notpetya/MitreMapping';
 import GlobalImpact from '@/components/notpetya/GlobalImpact';
 import BusinessImpact from '@/components/notpetya/BusinessImpact';
@@ -34,6 +39,11 @@ export default function NotPetyaPage() {
         <TimelineSection />
         <AttackChain />
         <PropagationSim />
+        <IncidentQueryEngine />
+        <DatabaseExplorer />
+        <ERDiagramSection />
+        <SOCSimulator />
+        <DefenseLayers />
         <MitreMapping />
         <GlobalImpact />
         <BusinessImpact />

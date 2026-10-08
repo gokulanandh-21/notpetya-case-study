@@ -25,7 +25,7 @@ export default function BusinessImpact() {
             <ul style={{ color: 'var(--np-white-dim)', lineHeight: 1.6, display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingLeft: '1.2rem' }}>
               <li>Master Boot Records overwritten</li>
               <li>Master File Tables encrypted</li>
-              <li>Domain Controllers destroyed</li>
+              <li>Active Directory services rendered completely unavailable across global sites</li>
               <li>Virtualization infrastructure offline</li>
               <li>Network switches and routers unreachable</li>
             </ul>

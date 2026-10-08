@@ -35,7 +35,7 @@ export const timelineEvents: TimelineEvent[] = [
       'The attackers — later attributed to Sandworm (GRU Unit 74455) — pushed a trojanised software update through M.E.Doc, a widely-used Ukrainian accounting application. The update contained a backdoor that had been present in M.E.Doc since at least April 2017.',
     technical:
       'The malicious DLL was injected into the legitimate M.E.Doc update process (ZvitPublishedObjects.dll). On execution it collected EDRPOU codes, email addresses, and proxy/VPN credentials before downloading the NotPetya binary. The C2 communication used HTTP POST requests to 84.200.16.242. The backdoor pre-dated the June 27 attack by months, suggesting long-term supply-chain compromise.',
-    affected: ['M.E.Doc users across Ukraine — estimated 80% of Ukrainian businesses used the software'],
+    affected: ['M.E.Doc users across Ukraine — mandated software used by the vast majority of businesses operating in Ukraine'],
     source: 'ESET, Cisco Talos, Ukrainian Cyber Police',
   },
   {
@@ -44,12 +44,12 @@ export const timelineEvents: TimelineEvent[] = [
     date: 'June 27, 2017',
     category: 'INFECTION',
     severity: 'critical',
-    title: 'Initial Execution — Disk Encryption Begins',
+    title: 'Initial Execution — Disk Destruction Routine Initiated',
     summary:
-      'The NotPetya binary (perfc.dat, later signed as a legitimate binary) was dropped and executed on infected hosts. It immediately began encrypting the Master Boot Record (MBR) and Master File Table (MFT) of the local drive.',
+      'The NotPetya binary (perfc.dat) was dropped and executed on infected hosts via the compromised updater. It immediately initiated its MBR overwrite preparation and encrypted local drive structures.',
     technical:
-      'NotPetya replaced the legitimate MBR with a custom bootloader that displayed the ransom note. It then encrypted the MFT using Salsa20, making the file system inaccessible. Unlike genuine ransomware, the encryption keys were never transmitted to a C2 server — recovery was impossible by design. The 1-hour wait timer before reboot was used to maximise lateral spread before victims noticed.',
-    affected: ['Initial Ukrainian hosts with M.E.Doc installed'],
+      'NotPetya replaced the legitimate MBR with a custom bootloader that displayed the ransom note. It then encrypted the MFT using Salsa20, making the file system inaccessible. Unlike genuine ransomware, the encryption keys were never transmitted to a C2 server — recovery was impossible by design. A 60-minute wait timer before forced reboot was scheduled to maximise lateral spread before victims noticed.',
+    affected: ['Initial Ukrainian endpoints running M.E.Doc'],
     source: 'Kaspersky Lab, ESET',
   },
   {
@@ -84,13 +84,13 @@ export const timelineEvents: TimelineEvent[] = [
     date: 'June 27, 2017',
     category: 'IMPACT',
     severity: 'critical',
-    title: 'Maersk Network Goes Dark — 45,000 PCs Affected',
+    title: 'Maersk Network Goes Dark — Global Operations Paralyzed',
     summary:
-      'A.P. Møller–Maersk, the world\'s largest container shipping company, suffered catastrophic system failure. 45,000 PCs, 4,000 servers, and 2,500 applications became inoperable within minutes, including the critical cargo booking system TradeLens.',
+      'A.P. Møller–Maersk, the world\'s largest container shipping company, suffered catastrophic system failure. 45,000 PCs, 4,000 servers, and 2,500 applications became inoperable within minutes, halting terminal cargo logistics and booking operations.',
     technical:
-      'Maersk\'s infection vector was a single Ukrainian subsidiary that used M.E.Doc. Because Maersk\'s internal network was flat — VPNs connected all global offices — NotPetya propagated from one compromised host across all continents. The company lost its entire Active Directory infrastructure. Recovery required physically shipping a clean domain controller from Ghana (the only AD controller that was offline during the attack) to restart the rebuild.',
+      'Maersk\'s infection vector was an internal accounting computer in Ukraine running M.E.Doc. Because corporate networks were interconnected across global sites, NotPetya propagated across all continents. The enterprise lost Active Directory services. Recovery required retrieving an uncorrupted offline domain controller from Ghana to rebuild the enterprise directory infrastructure.',
     affected: ['Maersk (45,000 PCs, 4,000 servers)', '76 port terminals globally'],
-    source: 'Maersk CEO Søren Skou public statements; Wired investigation',
+    source: 'Maersk CEO public statements; Wired investigation',
   },
   {
     id: 'evt-06',
