@@ -37,7 +37,8 @@ const TABLE_DESCRIPTIONS: Record<string, string> = {
 
 export async function GET() {
   try {
-    // 1. Fetch tables and column definitions
+    // 1. Fetch tables and column definitions strictly for NotPetya CTI tables
+    const allowedTableList = Object.keys(TABLE_DESCRIPTIONS);
     const colQuery = `
       SELECT 
         c.table_name,
@@ -51,9 +52,10 @@ export async function GET() {
       LEFT JOIN information_schema.table_constraints tc
         ON kcu.constraint_name = tc.constraint_name AND tc.constraint_type = 'PRIMARY KEY'
       WHERE c.table_schema = 'public'
+        AND c.table_name = ANY($1::text[])
       ORDER BY c.table_name, c.ordinal_position;
     `;
-    const colRes = await executeQuery(colQuery);
+    const colRes = await executeQuery(colQuery, [allowedTableList]);
 
     const tablesMap: Record<string, TableColumnMetadata[]> = {};
     for (const r of colRes.rows) {
@@ -68,12 +70,12 @@ export async function GET() {
 
     const tableList: TableMetadata[] = [];
     for (const tableName of Object.keys(tablesMap)) {
-      // Row count
-      const countRes = await executeQuery(`SELECT COUNT(*) as count FROM ${tableName}`);
+      // Row count with quoted table name
+      const countRes = await executeQuery(`SELECT COUNT(*) as count FROM "${tableName}"`);
       const rowCount = parseInt(countRes.rows[0]?.count || '0', 10);
 
-      // Sample 3 records
-      const sampleRes = await executeQuery(`SELECT * FROM ${tableName} LIMIT 3`);
+      // Sample 3 records with quoted table name
+      const sampleRes = await executeQuery(`SELECT * FROM "${tableName}" LIMIT 3`);
 
       tableList.push({
         tableName,
